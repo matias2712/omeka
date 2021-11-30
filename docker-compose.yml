@@ -4,4 +4,5 @@ services:
     image: trafex/php-nginx:2.2.0
     restart: always
       container_name: omeka-s-test
-    
+    ports:
+    - 80:80
