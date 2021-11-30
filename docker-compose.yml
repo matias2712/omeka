@@ -1,0 +1,7 @@
+version: '3'
+services:
+  omekaS:
+    image: trafex/php-nginx:2.2.0
+    restart: always
+  
+    container_name: omekaS-test
