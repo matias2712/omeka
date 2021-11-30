@@ -5,4 +5,4 @@ services:
     restart: always
       container_name: omeka-s-test
     ports:
-    - 80:80
+    - '80:80'
