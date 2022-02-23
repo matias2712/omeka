@@ -1,2 +1,3 @@
-# omeka-S
-omeka S docker 
+# omeka fadel
+omeka S docker
+omeka classic docker
