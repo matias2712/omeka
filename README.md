@@ -1,3 +1,3 @@
-# omeka fadel
+# omeka
 omeka S docker
 omeka classic docker
