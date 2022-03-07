@@ -1,10 +1,43 @@
 version: '3'
 services:
-  omekaS:
-    image: trafex/php-nginx:2.2.0
+  db:
+    build:   
+      context: .
+      dockerfile: Dockerfile.db
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - omk-db:/var/lib/mysql
+  classic:
+    build:   
+      context: .
+      dockerfile: Dockerfile.omkc
+    restart: always
+    container_name: omeka-classic-test
+    volumes: 
+    - omk-classic-data:/var/www/html:ro    
+    ports:
+    - '8080:8080'
+  s:
+    build:   
+      context: .
+      dockerfile: Dockerfile.omks
     restart: always
     container_name: omeka-s-test
     volumes: 
-      - /var/www/html:/var/www/html:ro    
+    - omk-s-data:/var/www/html:ro    
     ports:
-    - '80:8080'
+    - '8080:8080'  
+
+
+volumes:
+  omk-classic-data:
+  omk-s-data:
+  omk-db:
