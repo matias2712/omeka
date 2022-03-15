@@ -1,0 +1,27 @@
+version: '3'
+services:
+  classic:
+    image: omeka/omeka:latest
+    restart: always
+    container_name: omeka-classic-test
+    volumes: 
+    - app-data:/var/www/html:ro    
+    ports:
+    - '81:80'
+  db:
+    build:   
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: omeka_classic_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: omeka
+      MYSQL_USER: omeka
+      MYSQL_PASSWORD: omekaclassic22
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+  
+volumes:
+  app-data:
+  db-data:

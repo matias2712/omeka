@@ -1,0 +1,26 @@
+version: '3'
+services:
+  s:
+    build: .
+    restart: always
+    container_name: omeka-s-test
+    volumes: 
+    - app-data:/var/www/html:ro    
+    ports:
+    - '82:8080'  
+  db:
+    build:   
+      context: .
+      dockerfile: Dockerfile.db
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: omeka
+      MYSQL_USER: omeka
+      MYSQL_PASSWORD: omekafadel19
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+volumes:
+  app-data:
+  db-data:
